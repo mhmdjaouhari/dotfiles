@@ -14,4 +14,7 @@ else
 	. "$HOME/.xprofile"
 fi
 
-ssh-agent dwm
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
+dwm

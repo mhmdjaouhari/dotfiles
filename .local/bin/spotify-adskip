@@ -1,0 +1,35 @@
+#!/bin/sh
+
+while true ; do
+
+	title=$(playerctl --player=spotify metadata title)
+	trackid=$(playerctl --player=spotify metadata mpris:trackid)
+
+	word=":ad:"
+	
+	# if current track is an ad close, relaunch and resume playing
+	if [ "${trackid#*$word}" != "$trackid" ]; then 
+		while pgrep -x "spotify" > /dev/null ; do 
+			killall spotify
+			sleep 0.5s
+		done
+		
+		spotify &
+		
+		sleep 4s
+		while ! pgrep -x "spotify" > /dev/null ; do 
+			spotify &
+			sleep 4s
+		done
+		
+		while [ $(playerctl --player=spotify status) != "Playing" ] ; do
+		    sleep 0.5s
+		    playerctl --player=spotify play
+		done
+	fi
+
+	printf %s\\n "$title"
+
+	sleep 1s;
+
+done

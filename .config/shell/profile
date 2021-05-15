@@ -13,7 +13,7 @@ unsetopt PROMPT_SP
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="brave"
+export BROWSER="chrome"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -153,4 +153,11 @@ and replace \`libxft\`. Afterwards, you may start the graphical server by runnin
 fi
 
 # Switch escape and caps if tty and no passwd required:
-sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
+#sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
+
+# --------------------
+
+export PATH=~/.npm-global/bin:$PATH
+export TEXMFDIST=/usr/share/texmf-dist
+
+alias tlmgr='$TEXMFDIST/scripts/texlive/tlmgr.pl --usermode'
