@@ -33,7 +33,7 @@ Use [LARBS](https://larbs.xyz) to autoinstall everything:
 
 ```
 curl -LO larbs.xyz/larbs.sh
-sh larbs.sh -r git@github.com:mojaouhari/dotfiles.git -p https://raw.githubusercontent.com/mojaouhari/dotfiles/master/.local/progs.csv
+sh larbs.sh -r https://github.com/mojaouhari/dotfiles.git -p https://raw.githubusercontent.com/mojaouhari/dotfiles/master/.local/progs.csv
 ```
 
 or clone the repo files directly to your home directory and install the
