@@ -2,6 +2,10 @@
 
 # A dmenu wrapper script for system functions.
 
+resetkb () {
+	setxkbmap us && pkill -RTMIN+30 dwmblocks
+}
+
 # For non-systemd init systems.
 case "$(readlink -f /sbin/init)" in
 	*runit*) hib="sudo -A zzz" ;;
@@ -9,10 +13,10 @@ case "$(readlink -f /sbin/init)" in
 esac
 
 cmds="\
-🔒 lock		slock
+🔒 lock 	resetkb && slock
 🚪 leave dwm	kill -TERM $(pgrep -u $USER "\bdwm$")
 ♻ renew dwm	kill -HUP $(pgrep -u $USER "\bdwm$")
-💤 suspend	slock ${hib:-systemctl suspend -i}
+💤 suspend	resetkb && slock ${hib:-systemctl suspend -i}
 🔃 reboot	${reb:-sudo -A reboot}
 🖥 shutdown	${shut:-sudo -A shutdown -h now}
 📺 display off 	 xset dpms force off"
